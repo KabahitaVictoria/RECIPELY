@@ -1,12 +1,41 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
 
+/**
+ * AppController
+ *
+ * Simple test endpoints to verify backend is working
+ */
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
+  /**
+   * GET /
+    
+   * Basic health check endpoint
+   */
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getHello() {
+    return {
+      message: 'Welcome to Recipely API!',
+      status: 'Server is running',
+      timestamp: new Date().toISOString(),
+    };
+  }
+
+  /**
+   * GET /test
+   
+   * Simple test endpoint
+   */
+  @Get('test')
+  getTest() {
+    return {
+      success: true,
+      message: 'Connection successful! Frontend ↔️ Backend working! 🎉',
+      data: {
+        frontend: 'React + Vite',
+        backend: 'NestJS',
+        author: 'Victoria Kabahita',
+      },
+    };
   }
 }
