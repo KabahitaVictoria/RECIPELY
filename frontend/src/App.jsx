@@ -13,7 +13,7 @@ import Footer from './components/Footer';
  */
 const App = () => {
   return (
-    <Box sx={{ bgcolor: '#fff', overflow: 'hidden' }}>
+    <Box sx={{ bgcolor: '#fff' }}>
       <Navigation />
       <HeroSection />
       <FeaturesSection />

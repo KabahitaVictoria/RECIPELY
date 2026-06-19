@@ -1,108 +1,68 @@
-import React from "react";
-import {
-  AppBar,
-  Box,
-  Button,
-  Container,
-  Toolbar,
-  Typography,
-  alpha,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-import { Restaurant } from "@mui/icons-material";
-import GradientButton from "./shared/GradientButton";
+import React, { useState, useEffect } from "react";
+import './Navigation.css';
 
-/**
- * Navigation - Top app bar with logo and menu
- *
- * Features:
- * - Fixed position with blur effect
- * - Responsive menu (hides on mobile)
- * - Custom logo with gradient background
- */
 const Navigation = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
-  // menu items for the navigation
+  const [open, setOpen] = useState(false);
   const menuItems = ["Features", "Recipes", "About"];
 
+  useEffect(() => {
+    const handleResize = () => {
+      if(window.innerWidth > 768) {
+        setOpen(false);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [])
+
   return (
-    <AppBar
-      position="fixed"
-      elevation={0}
-      sx={{
-        bgcolor: alpha("#fff", 0.9),
-        backdropFilter: "blur(20px)", // this creates a frosted glass effect
-        borderBottom: "1px solid rgba(0,0,0,0.05)",
-      }}
-    >
-      <Container maxWidth={false} sx={{ px: { xs: 3, md: 6, lg: 8 } }}>
-        <Toolbar
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1,
-          }}
-        >
-          {/* Logo Section */}
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            {/* Logo Icon with gradient background */}
-            <Box
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: 2,
-                background: "linear-gradient(135deg, #FF6B9D 0%, #C06C84 100%)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Restaurant sx={{ color: "white", fontSize: 24 }} />
-            </Box>
+    <header>
+      <div>
+        <div>
+          <img className="icon" src="/fork-and-knife.png" alt="" />
+        </div>
+        <div>Recipely</div>
+      </div>
 
-            {/* Logo Text */}
-            <Typography
-              variant="h6"
-              sx={{
-                color: "#1a1a1a",
-                fontWeight: 800,
-                fontSize: "1.25rem",
-              }}
-            >
-              Recipely
-            </Typography>
-          </Box>
+      <nav>
+        {menuItems.map(item => (
+          <a key={item} href={`#${item}`}>
+            {item}
+          </a>
+        ))}
+      </nav>
 
-          {/* Spacer to push items to the right */}
-          <Box sx={{ flexGrow: 1 }} />
+      <button>Get Started</button>
 
-          {/* Menu Items - hidden on mobile */}
-          {!isMobile &&
-            menuItems.map((item) => (
-              <Button
-                key={item}
-                sx={{
-                  color: "#666",
-                  mx: 1,
-                  textTransform: "none",
-                  fontWeight: 500,
-                }}
-              >
+      <button className="hamburger" onClick={() => setOpen(!open)}>
+        <img src="/hamburger.png" alt="" />
+      </button>
+
+      {open && (
+        <div className="mobile-menu">
+          <nav id="mobile-nav">
+            {menuItems.map(item => (
+              <a 
+                key={item} 
+                href={`#${item}`}
+                onClick={() => setOpen(false)}
+                >
                 {item}
-              </Button>
+              </a>
             ))}
+          </nav>
 
-          {/* CTA Button */}
-          <GradientButton sx={{ ml: 2, fontSize: "0.9rem" }}>
-            Get Started
-          </GradientButton>
-        </Toolbar>
-      </Container>
-    </AppBar>
-  );
-};
+          <button 
+            className="get-started"
+            onClick={() => setOpen(false)}
+          >
+            Get Started</button>
+        </div>
+      )}
+    </header>
+  )
+}
 
 export default Navigation;
