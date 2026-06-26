@@ -106,3 +106,253 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
+
+
+
+import React from "react";
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  Stack,
+  Button,
+  alpha,
+  useMediaQuery,
+  //   useTheme,
+} from "@mui/material";
+import { AutoAwesome, ArrowForward, PlayArrow } from "@mui/icons-material";
+import GradientButton from "../shared/GradientButton";
+import RecipeCard from "../RecipeCard";
+
+/**
+ * HeroSection - Main landing section with headline and recipe cards
+ */
+const HeroSection = () => {
+  //   const theme = useTheme();
+  //   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  // Sample recipe data
+  const recipes = [
+    {
+      img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80",
+      title: "Fresh Salad",
+      time: "15 min",
+      color: "#4ECDC4",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80",
+      title: "Pizza Night",
+      time: "45 min",
+      color: "#FF6B9D",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&q=80",
+      title: "Pancakes",
+      time: "20 min",
+      color: "#FFD93D",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=400&q=80",
+      title: "Burger",
+      time: "30 min",
+      color: "#95E1D3",
+    },
+  ];
+
+  // Stats data
+  const stats = [
+    { value: "10K+", label: "Recipes Saved" },
+    { value: "5K+", label: "Active Users" },
+    { value: "4.9★", label: "User Rating" },
+  ];
+
+  return (
+    <Box sx={{ pt: 12 }} width="100%">
+      {" "}
+      {/* Padding top for fixed navbar */}
+      <Container
+        maxWidth={false}
+        sx={{
+          display: "flex",
+          justifyContent: "center", // center content horizontally
+          px: { xs: 3, md: 6, lg: 8 },
+        }}
+      >
+        <Grid
+          container
+          spacing={6}
+          alignItems="center"
+          sx={{ minHeight: "90vh", py: 8 }}
+        >
+          {/* Left Column - Text Content */}
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                textAlign: "center", // centers text horizontally
+                mx: "auto", // centers the box in its container
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center", // centers children like buttons and stats row
+              }}
+            >
+              {/* Badge */}
+              <Box
+                sx={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 1,
+                  px: 2,
+                  py: 0.75,
+                  borderRadius: 10,
+                  bgcolor: alpha("#FF6B9D", 0.1),
+                  mb: 3,
+                }}
+              >
+                <AutoAwesome sx={{ fontSize: 18, color: "#FF6B9D" }} />
+                <Typography
+                  sx={{
+                    fontSize: "0.875rem",
+                    fontWeight: 600,
+                    color: "#C06C84",
+                  }}
+                >
+                  Your Recipes In One Place
+                </Typography>
+              </Box>
+
+              {/* Main Headline */}
+              <Typography
+                variant="h1"
+                sx={{
+                  fontSize: { xs: "2.5rem", md: "3.5rem", lg: "4rem" },
+                  fontWeight: 900,
+                  lineHeight: 1.1,
+                  mb: 3,
+                  background:
+                    "linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%)",
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                Your Kitchen's
+                <br />
+                Digital
+                <Box
+                  component="span"
+                  sx={{
+                    background:
+                      "linear-gradient(135deg, #FF6B9D 0%, #C06C84 100%)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  {" "}
+                  Recipe Book
+                </Box>
+              </Typography>
+
+              {/* Subheadline */}
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "#666",
+                  mb: 4,
+                  lineHeight: 1.7,
+                  fontWeight: 400,
+                  maxWidth: 540,
+                }}
+              >
+                Organize, discover, and share your favorite recipes. Built for
+                home cooks who love to create delicious meals.
+              </Typography>
+
+              {/* CTA Buttons */}
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+                <GradientButton
+                  size="large"
+                  endIcon={<ArrowForward />}
+                  sx={{ fontSize: "1.1rem" }}
+                >
+                  Start Free Today
+                </GradientButton>
+              </Stack>
+
+              {/* Stats Row */}
+              <Stack direction="row" spacing={4} sx={{ mt: 6 }}>
+                {stats.map((stat, idx) => (
+                  <Box key={idx} sx={{ textAlign: "center" }}>
+                    <Typography
+                      variant="h4"
+                      fontWeight={800}
+                      sx={{ color: "#1a1a1a" }}
+                    >
+                      {stat.value}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: "#999" }}>
+                      {stat.label}
+                    </Typography>
+                  </Box>
+                ))}
+              </Stack>
+            </Box>
+          </Grid>
+
+          {/* Right Column - Recipe Cards */}
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                position: "relative",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {/* Animated Background Circle */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  width: { xs: 300, md: 500 },
+                  height: { xs: 300, md: 500 },
+                  borderRadius: "50%",
+                  background:
+                    "linear-gradient(135deg, #FFE5EC 0%, #FFF0F5 100%)",
+                  // CSS animation
+                  animation: "float 6s ease-in-out infinite",
+                  "@keyframes float": {
+                    "0%, 100%": { transform: "translateY(0)" },
+                    "50%": { transform: "translateY(-20px)" },
+                  },
+                }}
+              />
+
+              {/* Recipe Cards Grid */}
+              <Box sx={{ position: "relative", zIndex: 1 }}>
+                <Grid container spacing={2} justifyContent="center">
+                  {recipes.map((recipe, idx) => (
+                    <Grid
+                      item
+                      key={idx}
+                      xs={12} // full width on extra small screens
+                      sm={6} // two cards per row on small screens
+                      md={4} // three cards per row on medium screens
+                      lg={3} // four cards per row on large screens
+                      sx={{ display: "flex", justifyContent: "center" }} // centers the card
+                    >
+                      <RecipeCard {...recipe} />
+                    </Grid>
+                  ))}
+                </Grid>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  );
+};
+
+export default HeroSection;
