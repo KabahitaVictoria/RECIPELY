@@ -11,8 +11,8 @@ import {
   //   useTheme,
 } from "@mui/material";
 import { AutoAwesome, ArrowForward, PlayArrow } from "@mui/icons-material";
-import GradientButton from "./shared/GradientButton";
-import RecipeCard from "./RecipeCard";
+import GradientButton from "../shared/GradientButton";
+import RecipeCard from "../RecipeCard";
 
 /**
  * HeroSection - Main landing section with headline and recipe cards
