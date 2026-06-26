@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import Navigation from './components/Navigation';
-import HeroSection from './components/HeroSection';
+import Navigation from './components/Navigation/Navigation';
+import HeroSection from './components/Hero/HeroSection';
 import FeaturesSection from './components/FeaturesSection';
 import CTASection from './components/CTASection';
 import Footer from './components/Footer';

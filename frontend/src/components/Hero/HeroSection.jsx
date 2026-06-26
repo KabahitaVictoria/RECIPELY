@@ -1,4 +1,5 @@
 import "./HeroSection.css";
+import RecipeCard from "../RecipeCard";
 
 const HeroSection = () => {
   const recipes = [
@@ -24,7 +25,37 @@ const HeroSection = () => {
 
   return (
     <section className="hero">
+      <div className="hero-left">
+        <p className="badge">
+          ✨ Your Recipes in One Place
+        </p>
 
+        <h1>
+          Your Kitchen's <br />
+          Digital <span>Recipe Book</span>
+        </h1>
+
+        <p className="subtitle">
+          Organize, discover and share your favorite recipes.
+        </p>
+
+        <button className="cta">Start Free Today</button>
+
+        <div className="stats">
+          {stats.map((stat, index) => (
+            <div key={index}>
+              <h3>{stat.value}</h3>
+              <p>{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="hero-right">
+        {recipes.map((recipe, index) => (
+          <RecipeCard key={index} {...recipe} />
+        ))}
+      </div>
     </section>
   )
 }
