@@ -1,5 +1,5 @@
 import "./HeroSection.css";
-import RecipeCard from "../RecipeCard";
+import RecipeCard from "../cards/RecipeCard/RecipeCard";
 
 const HeroSection = () => {
   const recipes = [
