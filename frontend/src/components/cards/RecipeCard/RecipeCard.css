@@ -10,3 +10,8 @@
 
     transition: all 0.3s ease;
 }
+
+.recipe-card:hover {
+    transform: translateY(-8px) rotate(2deg);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, .15);
+}
