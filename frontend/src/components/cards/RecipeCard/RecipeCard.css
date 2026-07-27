@@ -15,3 +15,11 @@
     transform: translateY(-8px) rotate(2deg);
     box-shadow: 0 16px 48px rgba(0, 0, 0, .15);
 }
+
+.recipe-image {
+    position: relative;
+    height: 140px;
+
+    background-size: cover;
+    background-position: center;
+}
