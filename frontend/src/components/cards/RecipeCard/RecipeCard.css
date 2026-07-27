@@ -55,3 +55,27 @@
 .favourite-btn svg {
     font-size: 18px;
 }
+
+.recipe-content {
+    padding: 16px;
+}
+
+.recipe-content h3 {
+    margin: 0 0 8px;
+
+    font-size: .95rem;
+    font-weight: 700;
+}
+
+.recipe-time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    color: #565656;
+    font-size: .75rem;
+}
+
+.recipe-time svg {
+    font-size: 16px;
+}
